@@ -75,14 +75,14 @@ const Contact = () => {
                 <Mail className="h-6 w-6 text-gray-900 mt-1 mr-4" />
                 <div>
                   <h4 className="font-medium text-gray-900 mb-1">Email</h4>
-                  <p className="text-gray-600">hello@wasiproperties.com</p>
+                  <p className="text-gray-600">info.wasiproperty@gmail.com</p>
                 </div>
               </div>
               <div className="flex items-start">
                 <Phone className="h-6 w-6 text-gray-900 mt-1 mr-4" />
                 <div>
                   <h4 className="font-medium text-gray-900 mb-1">Phone</h4>
-                  <p className="text-gray-600">+1 (555) 123-4567</p>
+                  <p className="text-gray-600">+91 7035394786</p>
                 </div>
               </div>
             </div>

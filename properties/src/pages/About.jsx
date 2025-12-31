@@ -33,16 +33,7 @@ const About = () => {
           At WASI PROPERTY, every deal is handled with transparency, clarity, and long-term vision. Whether it’s residential, commercial, or land investment, the focus remains on genuine listings, fair guidance, and client satisfaction.
 Trust, space, and growth form the foundation of every relationship built here.
             </p>
-            <div className="grid grid-cols-2 gap-8 mt-10">
-              <div>
-                <h4 className="text-4xl font-serif text-gray-900 mb-2">500+</h4>
-                <p className="text-sm text-gray-500 uppercase tracking-wider">Properties Sold</p>
-              </div>
-              <div>
-                <h4 className="text-4xl font-serif text-gray-900 mb-2">$2B+</h4>
-                <p className="text-sm text-gray-500 uppercase tracking-wider">Total Value</p>
-              </div>
-            </div>
+         
           </div>
         </div>
       </section>
