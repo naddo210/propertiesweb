@@ -78,7 +78,7 @@ const Footer = () => {
               <li className="text-gray-300 text-sm">info.wasiproperty@gmail.com</li>
               <li className="text-gray-300 text-sm">+91 7035394786</li>
               <li className="text-gray-300 text-sm">
-                Navi Mumbai
+              Ulwe navi mumbai Maharashtra
               </li>
             </ul>
           </div>
@@ -96,7 +96,7 @@ const Footer = () => {
           {/* Social Icons */}
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a
-              href="#"
+              href="instagram.com/wasiproperty?utm_source=qr&igsh=MTNvdWxnazQ4amMxbA=="
               aria-label="Instagram"
               className="text-gray-500 hover:text-white transition-all transform hover:scale-110"
             >
@@ -104,7 +104,7 @@ const Footer = () => {
             </a>
 
             <a
-              href="#"
+              href="https://www.youtube.com/@wasiproperty"
               aria-label="Youtube"
               className="text-gray-500 hover:text-white transition-all transform hover:scale-110"
             >

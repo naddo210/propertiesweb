@@ -28,7 +28,7 @@ const Contact = () => {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: "YOUR_ACCESS_KEY_HERE", // Replace with your Web3Forms Access Key
+          access_key: "eabef0a0-b2cb-4d59-ac72-03ca62cf1c9a", // Replace with your Web3Forms Access Key
           ...formData
         }),
       });
@@ -52,7 +52,7 @@ const Contact = () => {
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h1 className="text-4xl md:text-6xl font-serif mb-6">Contact Us</h1>
           <p className="text-lg text-gray-400 leading-relaxed">
-            Begin your journey with WASI Properties. Our team is ready to assist you.
+            Begin your journey with WASI Property. Our team is ready to assist you.
           </p>
         </div>
       </section>
@@ -68,7 +68,7 @@ const Contact = () => {
                 <MapPin className="h-6 w-6 text-gray-900 mt-1 mr-4" />
                 <div>
                   <h4 className="font-medium text-gray-900 mb-1">Office</h4>
-                  <p className="text-gray-600">123 Luxury Lane<br />Beverly Hills, CA 90210</p>
+                  <p className="text-gray-600">Ulwe navi mumbai <br /> Maharashtra</p>
                 </div>
               </div>
               <div className="flex items-start">
@@ -157,7 +157,7 @@ const Contact = () => {
                       value={formData.phone}
                       onChange={handleChange}
                       className="w-full px-4 py-3 bg-gray-50 border border-gray-200 focus:border-gray-900 focus:ring-0 outline-none transition-colors"
-                      placeholder="+1 (555) 000-0000"
+                      placeholder="+91 8787877878"
                     />
                   </div>
                 </div>
