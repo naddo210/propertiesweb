@@ -147,19 +147,29 @@ const Contact = () => {
                       placeholder="john@example.com"
                     />
                   </div>
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      required
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 focus:border-gray-900 focus:ring-0 outline-none transition-colors"
-                      placeholder="+91 8787877878"
-                    />
-                  </div>
+                <div>
+  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+    Phone Number
+  </label>
+
+  <input
+    type="tel"
+    id="phone"
+    name="phone"
+    required
+    value={formData.phone}
+    onChange={(e) => {
+      const value = e.target.value.replace(/\D/g, ""); // remove non-numbers
+      setFormData({ ...formData, phone: value });
+    }}
+    inputMode="numeric"
+    pattern="[0-9]*"
+    maxLength={10}
+    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 focus:border-gray-900 focus:ring-0 outline-none transition-colors"
+    placeholder="8787877878"
+  />
+</div>
+
                 </div>
 
                 <div>
