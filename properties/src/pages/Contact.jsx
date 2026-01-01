@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import { Mail, Phone, MapPin, CheckCircle, AlertCircle } from 'lucide-react';
+import { useState } from "react";
+import { Mail, Phone, MapPin, CheckCircle, AlertCircle } from "lucide-react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    type: 'Buy',
-    message: ''
+    name: "",
+    email: "",
+    phone: "",
+    type: "Buy",
+    message: "",
   });
-  
-  const [status, setStatus] = useState(null); // null, 'submitting', 'success', 'error'
+
+  const [status, setStatus] = useState(null); // null | submitting | success | error
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,85 +18,112 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus('submitting');
+    setStatus("submitting");
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      /* =======================
+         1️⃣ Send to Web3Forms
+      ======================= */
+      const web3Response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: "eabef0a0-b2cb-4d59-ac72-03ca62cf1c9a", // Replace with your Web3Forms Access Key
-          ...formData
+          access_key: "eabef0a0-b2cb-4d59-ac72-03ca62cf1c9a",
+          ...formData,
         }),
       });
 
-      const result = await response.json();
+      const web3Result = await web3Response.json();
 
-      if (result.success) {
-        setStatus('success');
-        setFormData({ name: '', email: '', phone: '', type: 'Buy', message: '' });
+      /* =======================
+         2️⃣ Send to Google Sheet
+      ======================= */
+      await fetch("https://script.google.com/macros/s/AKfycby5Bv7-fh0xD7r4igQXmXmFZ5M4ZmwJZx70fQ3aJOGeWejUel_OjnRYiaWjireiQwQ/exec", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (web3Result.success) {
+        setStatus("success");
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          type: "Buy",
+          message: "",
+        });
       } else {
-        setStatus('error');
+        setStatus("error");
       }
-    } catch {
-      setStatus('error');
+    } catch (error) {
+      setStatus("error");
     }
   };
 
   return (
     <div className="w-full">
+      {/* HERO */}
       <section className="bg-gray-900 text-white py-20 md:py-32">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h1 className="text-4xl md:text-6xl font-serif mb-6">Contact Us</h1>
-          <p className="text-lg text-gray-400 leading-relaxed">
+          <p className="text-lg text-gray-400">
             Begin your journey with WASI Property. Our team is ready to assist you.
           </p>
         </div>
       </section>
 
+      {/* CONTENT */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16">
           
-          {/* Contact Info */}
+          {/* INFO */}
           <div>
             <h2 className="text-3xl font-serif text-gray-900 mb-8">Get In Touch</h2>
+
             <div className="space-y-8 mb-12">
-              <div className="flex items-start">
-                <MapPin className="h-6 w-6 text-gray-900 mt-1 mr-4" />
+              <div className="flex">
+                <MapPin className="h-6 w-6 mt-1 mr-4" />
                 <div>
-                  <h4 className="font-medium text-gray-900 mb-1">Office</h4>
-                  <p className="text-gray-600">Ulwe navi mumbai <br /> Maharashtra</p>
+                  <h4 className="font-medium">Office</h4>
+                  <p className="text-gray-600">
+                    Ulwe, Navi Mumbai <br /> Maharashtra
+                  </p>
                 </div>
               </div>
-              <div className="flex items-start">
-                <Mail className="h-6 w-6 text-gray-900 mt-1 mr-4" />
+
+              <div className="flex">
+                <Mail className="h-6 w-6 mt-1 mr-4" />
                 <div>
-                  <h4 className="font-medium text-gray-900 mb-1">Email</h4>
+                  <h4 className="font-medium">Email</h4>
                   <p className="text-gray-600">info.wasiproperty@gmail.com</p>
                 </div>
               </div>
-              <div className="flex items-start">
-                <Phone className="h-6 w-6 text-gray-900 mt-1 mr-4" />
+
+              <div className="flex">
+                <Phone className="h-6 w-6 mt-1 mr-4" />
                 <div>
-                  <h4 className="font-medium text-gray-900 mb-1">Phone</h4>
+                  <h4 className="font-medium">Phone</h4>
                   <p className="text-gray-600">+91 7035394786</p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-gray-50 p-8 border border-gray-100">
-              <h3 className="font-serif text-xl text-gray-900 mb-4">Office Hours</h3>
+            <div className="bg-gray-50 p-8 border">
+              <h3 className="font-serif text-xl mb-4">Office Hours</h3>
               <div className="space-y-2 text-gray-600">
                 <div className="flex justify-between">
-                  <span>Monday - Friday</span>
-                  <span>9:00 AM - 6:00 PM</span>
+                  <span>Monday – Friday</span>
+                  <span>9:00 AM – 6:00 PM</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Saturday</span>
-                  <span>10:00 AM - 4:00 PM</span>
+                  <span>10:00 AM – 4:00 PM</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Sunday</span>
@@ -106,104 +133,87 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Contact Form */}
-          <div className="bg-white p-8 md:p-10 border border-gray-100 shadow-lg">
-            {status === 'success' ? (
+          {/* FORM */}
+          <div className="border p-8 shadow-lg">
+            {status === "success" ? (
               <div className="text-center py-12">
                 <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
-                <h3 className="text-2xl font-serif text-gray-900 mb-2">Message Sent</h3>
-                <p className="text-gray-600">Thank you for contacting us. We will get back to you shortly.</p>
-                <button onClick={() => setStatus(null)} className="mt-6 text-gray-900 underline hover:text-gray-600">
+                <h3 className="text-2xl font-serif mb-2">Message Sent</h3>
+                <p className="text-gray-600">
+                  Thank you for contacting us. We’ll get back to you shortly.
+                </p>
+                <button
+                  onClick={() => setStatus(null)}
+                  className="mt-6 underline"
+                >
                   Send another message
                 </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                <input
+                  name="name"
+                  placeholder="Full Name"
+                  required
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="w-full p-3 bg-gray-50 border"
+                />
+
+                <div className="grid md:grid-cols-2 gap-6">
                   <input
-                    type="text"
-                    id="name"
-                    name="name"
+                    name="email"
+                    type="email"
+                    placeholder="Email"
                     required
-                    value={formData.name}
+                    value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 focus:border-gray-900 focus:ring-0 outline-none transition-colors"
-                    placeholder="John Doe"
+                    className="w-full p-3 bg-gray-50 border"
+                  />
+                  <input
+                    name="phone"
+                    placeholder="Phone"
+                    required
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="w-full p-3 bg-gray-50 border"
                   />
                 </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 focus:border-gray-900 focus:ring-0 outline-none transition-colors"
-                      placeholder="john@example.com"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      required
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 focus:border-gray-900 focus:ring-0 outline-none transition-colors"
-                      placeholder="+91 8787877878"
-                    />
-                  </div>
-                </div>
 
-                <div>
-                  <label htmlFor="type" className="block text-sm font-medium text-gray-700 mb-2">Interested In</label>
-                  <select
-                    id="type"
-                    name="type"
-                    value={formData.type}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 focus:border-gray-900 focus:ring-0 outline-none transition-colors"
-                  >
-                    <option value="Buy">Buying a Property</option>
-                    <option value="Sell">Selling a Property</option>
-                    <option value="Rent">Renting a Property</option>
-                    <option value="Consultation">General Consultation</option>
-                  </select>
-                </div>
+                <select
+                  name="type"
+                  value={formData.type}
+                  onChange={handleChange}
+                  className="w-full p-3 bg-gray-50 border"
+                >
+                  <option value="Buy">Buying Property</option>
+                  <option value="Sell">Selling Property</option>
+                  <option value="Rent">Renting</option>
+                  <option value="Consultation">Consultation</option>
+                </select>
 
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows="4"
-                    value={formData.message}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 focus:border-gray-900 focus:ring-0 outline-none transition-colors resize-none"
-                    placeholder="Tell us about your requirements..."
-                  ></textarea>
-                </div>
+                <textarea
+                  name="message"
+                  rows="4"
+                  placeholder="Your message..."
+                  value={formData.message}
+                  onChange={handleChange}
+                  className="w-full p-3 bg-gray-50 border resize-none"
+                />
 
-                {status === 'error' && (
+                {status === "error" && (
                   <div className="flex items-center text-red-600 text-sm">
                     <AlertCircle className="h-4 w-4 mr-2" />
-                    Something went wrong. Please try again.
+                    Something went wrong. Try again.
                   </div>
                 )}
 
                 <button
                   type="submit"
-                  disabled={status === 'submitting'}
-                  className="w-full py-4 bg-gray-900 text-white font-medium hover:bg-gray-800 transition-all uppercase tracking-wider disabled:opacity-70 disabled:cursor-not-allowed"
+                  disabled={status === "submitting"}
+                  className="w-full py-4 bg-gray-900 text-white uppercase tracking-wide"
                 >
-                  {status === 'submitting' ? 'Sending...' : 'Send Message'}
+                  {status === "submitting" ? "Sending..." : "Send Message"}
                 </button>
               </form>
             )}
