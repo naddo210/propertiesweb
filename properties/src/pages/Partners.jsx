@@ -41,38 +41,51 @@ const Partners = () => {
 
   return (
     <div className="w-full">
+      {/* Hero Section */}
       <section className="bg-gray-50 py-20 md:py-32">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h1 className="text-4xl md:text-6xl font-serif text-gray-900 mb-6">Our Network</h1>
+          <h1 className="text-4xl md:text-6xl font-serif text-gray-900 mb-6">
+            Our Network
+          </h1>
           <p className="text-lg text-gray-600 leading-relaxed">
-            Collaborating with the world&apos;s most prestigious brands and institutions to deliver excellence.
+            Collaborating with the world’s most prestigious developers to deliver excellence.
           </p>
         </div>
       </section>
 
+      {/* Partners Grid */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-10">
             {partners.map((partner, index) => (
-              <div key={index} className="bg-white p-8 border border-gray-100 flex items-center justify-center hover:shadow-lg transition-all duration-300 group rounded-sm h-40">
-                <img 
-                  src={partner.logo} 
-                  alt={partner.name} 
-                  className="max-h-24 w-auto object-contain filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
+              <div
+                key={index}
+                className="bg-white border border-gray-100 rounded-sm h-40 flex items-center justify-center transition-shadow duration-300 hover:shadow-md"
+              >
+                <img
+                  src={partner.logo}
+                  alt={partner.name}
+                  className="max-h-24 w-auto object-contain"
                 />
               </div>
             ))}
           </div>
         </div>
       </section>
-      
+
+      {/* CTA Section */}
       <section className="py-24 bg-gray-900 text-white text-center">
         <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl font-serif mb-6">Become a Partner</h2>
+          <h2 className="text-3xl font-serif mb-6">
+            Become a Partner
+          </h2>
           <p className="text-gray-400 mb-10 max-w-2xl mx-auto">
-            Join our exclusive network of real estate professionals and luxury brands.
+            Join our exclusive network of trusted developers and luxury real estate brands.
           </p>
-          <a href="/contact" className="inline-block px-10 py-4 bg-white text-gray-900 font-medium hover:bg-gray-100 transition-colors uppercase tracking-wider">
+          <a
+            href="/contact"
+            className="inline-block px-10 py-4 bg-white text-gray-900 font-medium uppercase tracking-wider hover:bg-gray-100 transition-colors"
+          >
             Contact Us
           </a>
         </div>

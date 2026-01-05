@@ -182,29 +182,35 @@ const Home = () => {
       </section>
 
       {/* Partners Slider (Infinite Loop) */}
-      <section className="py-20 bg-white border-t border-gray-100 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 text-center mb-12">
-          <p className="text-sm font-bold uppercase tracking-widest text-gray-400">Trusted By Industry Leaders</p>
+     <section className="py-20 bg-white border-t border-gray-100 overflow-hidden">
+  <div className="max-w-7xl mx-auto px-6 text-center mb-12">
+    <p className="text-sm font-bold uppercase tracking-widest text-gray-400">
+      Trusted By Industry Leaders
+    </p>
+  </div>
+
+  <div className="relative w-full overflow-hidden">
+    <div className="flex animate-scroll whitespace-nowrap">
+      {[...Array(2)].map((_, i) => (
+        <div key={i} className="flex items-center space-x-16 mx-8">
+          {partners.map((partner, index) => (
+            <div
+              key={index}
+              className="flex items-center justify-center h-16 w-32"
+            >
+              <img
+                src={partner.logo}
+                alt={partner.name}
+                className="max-h-full max-w-full object-contain"
+              />
+            </div>
+          ))}
         </div>
-        
-        <div className="relative w-full overflow-hidden">
-          <div className="flex animate-scroll whitespace-nowrap">
-            {[...Array(2)].map((_, i) => (
-              <div key={i} className="flex items-center space-x-16 mx-8">
-                {partners.map((partner, index) => (
-                  <div key={index} className="flex items-center justify-center h-16 w-32 opacity-50 hover:opacity-100 transition-opacity">
-                    <img 
-                      src={partner.logo} 
-                      alt={partner.name} 
-                      className="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition-all" 
-                    />
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
+
 
       {/* CTA Section */}
       <section className="py-24 bg-gray-900 text-white text-center">
